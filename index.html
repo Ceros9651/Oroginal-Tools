@@ -16,16 +16,58 @@
       <!-- 区間リスト編集エリア -->
       <section class="editor-area" aria-label="区間リスト編集エリア">
         <h2>区間リスト</h2>
-        <!-- 追加フォーム・区間リスト UI はタスク2で実装する -->
+
+        <form id="add-form" class="add-form" novalidate>
+          <div class="field">
+            <label for="type-select">種類</label>
+            <select id="type-select" name="type">
+              <option value="作業">作業</option>
+              <option value="休憩">休憩</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="minutes-input">分数</label>
+            <input
+              id="minutes-input"
+              name="minutes"
+              type="number"
+              min="1"
+              step="1"
+              value="25"
+              inputmode="numeric"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">追加</button>
+        </form>
+
+        <p id="form-error" class="form-error" role="alert" hidden></p>
+
+        <ol id="interval-list" class="interval-list"></ol>
+        <p id="empty-hint" class="empty-hint">まだ区間がありません。上のフォームから追加してください。</p>
+        <p id="schedule-summary" class="schedule-summary"></p>
       </section>
 
       <!-- タイマー実行エリア -->
       <section class="runner-area" aria-label="タイマー実行エリア">
         <h2>タイマー</h2>
-        <!-- 残り時間・現在種別・操作ボタンはタスク3で実装する -->
+
+        <div class="display" id="display">
+          <p class="current-type" id="current-type">待機中</p>
+          <p class="remaining" id="remaining" aria-live="off">00:00</p>
+          <p class="progress-label" id="progress-label"></p>
+        </div>
+
+        <p id="runner-message" class="runner-message" role="status" hidden></p>
+
+        <div class="controls">
+          <button type="button" id="btn-start" class="btn btn-primary">開始</button>
+          <button type="button" id="btn-pause" class="btn">一時停止</button>
+          <button type="button" id="btn-reset" class="btn">リセット</button>
+        </div>
       </section>
     </main>
 
+    <script src="core.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
